@@ -4,7 +4,7 @@
 
 public class Introduction {
     public static void main(String[] args) {
-        System.out.println("Introduction to OOP in Java");
+        System.out.println("Introduction to Design Principles in Java");
         AreaCalculatorV1.calculate();
         double area1 = AreaCalculatorV2.calculate(10, 5);
         System.out.println("Area: " + area1);
@@ -115,8 +115,3 @@ class InvoiceV2{
         System.out.println("Amount: " + amount);
     }
 }
-
-
-
-
-

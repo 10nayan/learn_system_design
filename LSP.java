@@ -35,6 +35,12 @@ class LSP {
         testFlyV1(penguin1); // Throws UnsupportedOperationException, violating LSP
         testFlyV2(sparrow2); // Works fine
         //testFlyV2(penguin2); // Does not compile, adhering to LSP
+        NotificationService emailNotification = new EmailNotificationService();
+        NotificationService smsNotification = new SMSNotificationService();
+        emailNotification.sendNotification("Hello via Email!");
+        smsNotification.sendNotification("Hello via SMS!");
+        emailNotification.attchFile("file.txt"); // Works fine
+        //smsNotification.attchFile("file.txt"); // Throws UnsupportedOperationException, violating LSP
     }
 
     public static void testFlyV1(BirdV1 bird) {
@@ -84,5 +90,39 @@ class SparrowV2 extends BirdV2 implements Flyable {
 
 class PenguinV2 extends BirdV2 {
     // Penguins cannot fly, so we do not implement the Flyable interface
+}
+
+class NotificationService {
+    public void sendNotification(String message) {
+        System.out.println("Sending notification: " + message);
+    }
+
+    public void attchFile(String filePath) {
+        System.out.println("Attaching file: " + filePath);
+    }
+}
+
+class EmailNotificationService extends NotificationService {
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Sending email notification: " + message);
+    }
+
+    @Override
+    public void attchFile(String filePath) {
+        System.out.println("Attaching file to email: " + filePath);
+    }
+}
+
+class SMSNotificationService extends NotificationService {
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Sending SMS notification: " + message);
+    }
+
+    @Override
+    public void attchFile(String filePath) {
+        throw new UnsupportedOperationException("SMS does not support file attachments");
+    }
 }
 

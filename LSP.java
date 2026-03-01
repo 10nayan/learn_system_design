@@ -1,5 +1,5 @@
 /*
- Liskov Substitution Principle (LSP) states that objects of a superclass should be replaceable 
+Liskov Substitution Principle (LSP) states that objects of a superclass should be replaceable 
 with objects of a subclass without affecting the correctness of the program. In other words, 
 if class B is a subclass of class A, then we should be able to replace instances of A with 
 instances of B without altering the desirable properties of the program (e.g., correctness, t
@@ -20,6 +20,12 @@ interchangeably without causing issues. For example, we can create an interface 
 method fly(), and then have SparrowV1 and EagleV1 implement this interface. The PenguinV1 class would not 
 implement Flyable since it cannot fly. This way, we can ensure that all classes that are expected to fly 
 can do so without violating LSP.
+
+Another example of LSP violation is when we have a NotificationService class with a method sendNotification(). 
+If we create a subclass called EmailNotificationService that extends NotificationService and overrides the 
+sendNotification() method, it would be fine. However, if we create a subclass called SMSNotificationService that 
+extends NotificationService and overrides the sendNotification() method but also adds an additional method called 
+attachFile(), it would violate LSP because the subclass introduces new behavior that is not expected by the parent class.
 */
 
 
